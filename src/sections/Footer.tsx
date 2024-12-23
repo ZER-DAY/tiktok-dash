@@ -1,9 +1,7 @@
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="text-center py-4 bg-gray-200">
-      <p>© 2024 Delegation System. All rights reserved.</p>
+    <footer className="bg-gray-800 text-white text-center p-4">
+      <p>© 2024 جميع الحقوق محفوظة</p>
     </footer>
   );
-};
-
-export default Footer;
+}

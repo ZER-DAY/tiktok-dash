@@ -1,13 +1,12 @@
-import Hero from "@/sections/Hero";
-import FormSection from "@/sections/FormSection";
-import Footer from "@/sections/Footer";
+import DelegationForm from "../components/DelegationForm";
 
-export default function Home() {
+const DelegationPage = () => {
   return (
-    <main>
-      <Hero />
-      <FormSection />
-      <Footer />
-    </main>
+    <div>
+      <h1>إدخال بيانات التوكيل</h1>
+      <DelegationForm />
+    </div>
   );
-}
+};
+
+export default DelegationPage;
