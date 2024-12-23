@@ -1,3 +1,5 @@
-export default function CallToAction() {
-    return <div>Call To Action</div>;
-}
+export const CallToAction = () => {
+  return <section>CallToAction</section>;
+};
+
+export default CallToAction;
