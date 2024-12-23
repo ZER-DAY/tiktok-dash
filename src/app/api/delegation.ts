@@ -1,11 +1,21 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import client from "../../lib/db";
+// مثال باستخدام PostgreSQL (pg)
+import { Client } from "pg";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === "POST") {
+export async function POST(req: NextRequest) {
+  const client = new Client({
+    user: "username", // ضع اسم المستخدم الخاص بقاعدة البيانات
+    host: "localhost",
+    database: "delegation_db",
+    password: "password", // ضع كلمة المرور الخاصة بقاعدة البيانات
+    port: 5432,
+  });
+
+  try {
+    await client.connect();
+
+    // قراءة البيانات المرسلة من العميل
+    const formData = await req.json();
     const {
       email,
       tiktok_userID,
@@ -14,26 +24,38 @@ export default async function handler(
       phone,
       how_found_us,
       sub_agent_name,
-    } = req.body;
+      other_text,
+    } = formData;
 
-    try {
-      await client.query(
-        "INSERT INTO delegation_requests (email, tiktok_userID, age, country, phone, how_found_us, sub_agent_name) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-        [
-          email,
-          tiktok_userID,
-          age,
-          country,
-          phone,
-          how_found_us,
-          sub_agent_name,
-        ]
-      );
-      res.status(200).json({ message: "Data submitted successfully" });
-    } catch (error) {
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  } else {
-    res.status(405).json({ error: "Method Not Allowed" });
+    // استعلام لإدخال البيانات في جدول 'delegations'
+    const query = `
+      INSERT INTO delegations (email, tiktok_userID, age, country, phone, how_found_us, sub_agent_name, other_text)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    `;
+    const values = [
+      email,
+      tiktok_userID,
+      age,
+      country,
+      phone,
+      how_found_us,
+      sub_agent_name,
+      other_text,
+    ];
+    await client.query(query, values);
+
+    // إرجاع استجابة ناجحة
+    return NextResponse.json(
+      { message: "تم إرسال البيانات بنجاح" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error processing data:", error);
+    return NextResponse.json(
+      { message: "حدث خطأ أثناء إرسال البيانات" },
+      { status: 500 }
+    );
+  } finally {
+    await client.end();
   }
 }
