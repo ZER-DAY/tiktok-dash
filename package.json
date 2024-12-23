@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "css-loader": "^7.1.2",
     "next": "^15.1.2",
     "pg": "^8.13.1",

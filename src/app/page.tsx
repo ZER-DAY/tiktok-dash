@@ -1,10 +1,9 @@
 import DelegationForm from "../components/DelegationForm";
-
+import Navbar from "@/sections/Navbar";
 const DelegationPage = () => {
   return (
     <div>
-      <h1>إدخال بيانات التوكيل</h1>
-      <DelegationForm />
+      <Navbar />
     </div>
   );
 };
