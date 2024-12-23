@@ -183,5 +183,4 @@ const DelegationForm = () => {
     </div>
   );
 };
-
 export default DelegationForm;

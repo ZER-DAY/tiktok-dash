@@ -1,7 +1,9 @@
+const footerLinks = [
+    { href: "#", label: "Contact" },
+    { href: "#", label: "Privacy Policy" },
+    { href: "#", label: "Terms & Conditions" },
+];
+
 export default function Footer() {
-  return (
-    <footer className="bg-gray-800 text-white text-center p-4">
-      <p>© 2024 جميع الحقوق محفوظة</p>
-    </footer>
-  );
+    return <div>Footer</div>;
 }
