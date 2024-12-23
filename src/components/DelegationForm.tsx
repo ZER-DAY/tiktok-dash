@@ -1,7 +1,5 @@
 "use client";
-
 import { useState } from "react";
-
 const DelegationForm = () => {
   const [email, setEmail] = useState("");
   const [tiktokUserID, setTiktokUserID] = useState("");
