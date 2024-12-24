@@ -1,18 +1,35 @@
-import "./globals.css"; // استيراد ملف CSS العام
+import type { Metadata } from "next";
+import { Sora, Space_Grotesk } from "next/font/google";
+import "./globals.css";
 
-export const metadata = {
-  title: "تطبيق الوكالة",
-  description: "نظام تسجيل الوكلاء",
+const soraFont = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  weight: "variable",
+});
+const spaceGroteskFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  weight: "variable",
+});
+
+export const metadata: Metadata = {
+  title: "AI SaaS Landing Page",
+  description: "Created by Frontend Tribe",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="ar" dir="rtl">
-      <body>{children}</body>
+    <html lang="en">
+      <body
+        className={`${soraFont.variable} ${spaceGroteskFont.variable} antialiased bg-gray-950 text-gray-300 font-body`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

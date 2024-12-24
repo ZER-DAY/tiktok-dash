@@ -1,11 +1,10 @@
-import DelegationForm from "../components/DelegationForm";
-import Navbar from "@/sections/Navbar";
+import Header from "@/sections/Header";
 import Hero from "@/sections/Hero";
 const DelegationPage = () => {
   return (
     <div>
-      <Navbar />
-      <Hero />
+      <Header />
+      {/* <Hero /> */}
       {/* <DelegationForm /> */}
     </div>
   );
